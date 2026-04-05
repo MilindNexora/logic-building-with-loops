@@ -30,3 +30,70 @@ while (num != 0) {
     cout << "You entered: " << num << endl;
     cin >> num;
 }
+
+Example 3:- C++ Code (Palindrome Check)
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, original, reverse = 0, digit;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    original = n;  // store original number
+
+    // Reverse the number
+    while (n > 0) {
+        digit = n % 10;                  // get last digit
+        reverse = reverse * 10 + digit;  // build reverse
+        n = n / 10;                      // remove last digit
+    }
+
+    // Check palindrome
+    if (original == reverse) {
+        cout << "The given number is a palindrome." << endl;
+    } else {
+        cout << "The given number is not a palindrome." << endl;
+    }
+
+    return 0;
+}
+
+aleternate 
+#include <iostream>
+using namespace std;
+
+// Function to reverse number
+int reverseNumber(int n) {
+    int reverse = 0, digit;
+
+    while (n > 0) {
+        digit = n % 10;
+        reverse = reverse * 10 + digit;
+        n = n / 10;
+    }
+
+    return reverse;
+}
+
+// Function to check palindrome
+bool isPalindrome(int n) {
+    return n == reverseNumber(n);
+}
+
+int main() {
+    int num;
+
+    cout << "Enter a number: ";
+    cin >> num;
+
+    if (isPalindrome(num)) {
+        cout << "The given number is a palindrome." << endl;
+    } else {
+        cout << "The given number is not a palindrome." << endl;
+    }
+
+    return 0;
+}
