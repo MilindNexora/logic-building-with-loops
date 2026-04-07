@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int n, original, digit, sum = 0, count = 0;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    original = n;
+
+    // Count number of digits
+    int temp = n;
+    while (temp > 0) {
+        count++;
+        temp /= 10;
+    }
+
+    // Calculate Armstrong sum
+    temp = n;
+    while (temp > 0) {
+        digit = temp % 10;
+        sum += pow(digit, count);
+        temp /= 10;
+    }
+
+    // Check
+    if (sum == original)
+        cout << "The number is an Armstrong number." << endl;
+    else
+        cout << "The number is not an Armstrong number." << endl;
+
+    return 0;
+}
