@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+// Normal function — causes a function call each time
+int squareNormal(int x) {
+    return x * x;
+}
+
+// Inline function — compiler pastes code directly where called
+inline int squareInline(int x) {
+    return x * x;
+}
+
+int main() {
+    cout << squareNormal(5) << endl;   // 25 — involves jump + return
+    cout << squareInline(5) << endl;   // 25 — code expanded in-place
+
+    // The compiler effectively treats squareInline(5) as:
+    // cout << (5 * 5) << endl;
+    return 0;
+}
+
+ Inline Functions
+Normally when you call a function, the CPU jumps to a new location in memory, executes it, then jumps back — this is called function call overhead. For tiny functions called thousands of times, this overhead adds up. The inline keyword asks the compiler to paste the function's code directly at the call site instead of jumping.
