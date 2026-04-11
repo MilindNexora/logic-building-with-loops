@@ -1,0 +1,195 @@
+String
+A string is a sequence of characters. In C++ we use std::string (from <string> header).
+
+Declaration & Basic Operations
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    // Declaration
+    string s1 = "Hello";
+    string s2("World");
+    string s3;           // empty string
+
+    // Length
+    cout << s1.length() << endl;  // 5
+    cout << s1.size()   << endl;  // 5 (same as length)
+
+    // Access characters (0-based index)
+    cout << s1[0]    << endl;  // H
+    cout << s1.at(4) << endl;  // o  (safer — throws exception if out of range)
+
+    // Modify a character (strings ARE mutable in C++)
+    s1[0] = 'J';
+    cout << s1 << endl;  // Jello
+
+    // Concatenation
+    string full = s1 + " " + s2;
+    cout << full << endl;  // Jello World
+
+    // Append
+    s1.append("!!!");
+    cout << s1 << endl;  // Jello!!!
+
+    return 0;
+}
+
+
+
+String Input
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string name, sentence;
+
+    // cin reads only one word (stops at space)
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Hello, " << name << endl;
+
+    cin.ignore();  // clear leftover newline from buffer
+
+    // getline reads full line including spaces
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
+    cout << "You entered: " << sentence << endl;
+
+    return 0;
+}
+
+
+
+Important String Functions
+
+#include <iostream>
+#include <string>
+#include <algorithm>  // for transform()
+using namespace std;
+
+int main() {
+    string msg = "Hello, World!";
+
+    // ── substr(start, length) ─────────────────
+    cout << msg.substr(7, 5) << endl;   // World
+
+    // ── find() — returns index or string::npos ─
+    int pos = msg.find("World");
+    if (pos != string::npos)
+        cout << "Found at: " << pos << endl;  // Found at: 7
+
+    // ── replace(start, length, new_str) ───────
+    msg.replace(7, 5, "C++");
+    cout << msg << endl;  // Hello, C++!
+
+    // ── erase(start, length) ──────────────────
+    msg.erase(5, 1);      // removes ","
+    cout << msg << endl;  // Hello C++!
+
+    // ── insert(position, str) ─────────────────
+    msg.insert(5, ",");
+    cout << msg << endl;  // Hello, C++!
+
+    // ── empty() and clear() ───────────────────
+    string empty_str = "";
+    cout << empty_str.empty() << endl;  // 1 (true)
+    msg.clear();
+    cout << msg.empty() << endl;        // 1 (true)
+
+    return 0;
+}
+
+
+
+Convert Case (Upper / Lower)
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    string s = "Hello World";
+
+    // To uppercase
+    string upper = s;
+    transform(upper.begin(), upper.end(), upper.begin(), ::toupper);
+    cout << upper << endl;  // HELLO WORLD
+
+    // To lowercase
+    string lower = s;
+    transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+    cout << lower << endl;  // hello world
+
+    return 0;
+}
+
+
+
+
+String Comparison
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string a = "apple";
+    string b = "banana";
+
+    // Using == != < > operators
+    cout << (a == b) << endl;  // 0 (false)
+    cout << (a != b) << endl;  // 1 (true)
+    cout << (a < b)  << endl;  // 1 (true — lexicographic order)
+
+    // Using compare()
+    // returns 0 if equal, <0 if a<b, >0 if a>b
+    cout << a.compare(b) << endl;  // negative number
+
+    return 0;
+}
+
+
+
+Character-by-Character Traversal
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s = "Hello";
+
+    // Method 1: index loop
+    for (int i = 0; i < s.length(); i++) {
+        cout << s[i] << " ";
+    }
+    cout << endl;
+    // H e l l o
+
+    // Method 2: range-based loop
+    for (char c : s) {
+        cout << c << " ";
+    }
+    cout << endl;
+    // H e l l o
+
+    // Count vowels example
+    int vowels = 0;
+    for (char c : s) {
+        c = tolower(c);
+        if (c=='a' || c=='e' || c=='i' || c=='o' || c=='u')
+            vowels++;
+    }
+    cout << "Vowels: " << vowels << endl;  // 2
+
+    return 0;
+}
