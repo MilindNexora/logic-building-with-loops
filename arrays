@@ -83,3 +83,49 @@ int main() {
 
     return 0;
 }
+
+
+
+Common Array Operations
+
+
+#include <iostream>
+#include <algorithm>  // for sort(), reverse(), min(), max()
+using namespace std;
+
+int main() {
+    int arr[] = {40, 10, 50, 20, 30};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    // ── Find max & min ────────────────────────
+    cout << "Max: " << *max_element(arr, arr + n) << endl;  // 50
+    cout << "Min: " << *min_element(arr, arr + n) << endl;  // 10
+
+    // ── Sum of all elements ───────────────────
+    int sum = 0;
+    for (int x : arr) sum += x;
+    cout << "Sum: " << sum << endl;  // 150
+
+    // ── Sort ascending ────────────────────────
+    sort(arr, arr + n);
+    // arr = {10, 20, 30, 40, 50}
+
+    // ── Sort descending ───────────────────────
+    sort(arr, arr + n, greater<int>());
+    // arr = {50, 40, 30, 20, 10}
+
+    // ── Reverse ───────────────────────────────
+    reverse(arr, arr + n);
+    // arr = {10, 20, 30, 40, 50}
+
+    // ── Search (linear) ───────────────────────
+    int target = 30;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            cout << "Found at index: " << i << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
