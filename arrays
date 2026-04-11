@@ -1,0 +1,85 @@
+An array stores multiple values of the same data type in contiguous memory locations.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaration
+    int arr[5];
+
+    // Declaration + Initialization
+    int nums[5] = {10, 20, 30, 40, 50};
+
+    // Auto size detection
+    int auto_arr[] = {1, 2, 3, 4, 5};  // compiler sets size = 5
+
+    // Accessing elements (0-based index)
+    cout << nums[0] << endl;  // 10
+    cout << nums[4] << endl;  // 50
+
+    // Modifying element
+    nums[2] = 99;
+    cout << nums[2] << endl;  // 99
+
+    return 0;
+}
+
+
+
+
+Traversing an Array
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nums[] = {10, 20, 30, 40, 50};
+    int len = sizeof(nums) / sizeof(nums[0]);  // = 5
+
+    // Method 1: for loop
+    for (int i = 0; i < len; i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+    // Output: 10 20 30 40 50
+
+    // Method 2: range-based for loop (C++11)
+    for (int x : nums) {
+        cout << x << " ";
+    }
+    cout << endl;
+    // Output: 10 20 30 40 50
+
+    return 0;
+}
+
+
+2D Array
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // 3 rows, 3 columns
+    int matrix[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    // Access element at row 1, col 2
+    cout << matrix[1][2] << endl;  // 6
+
+    // Print full matrix
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    // 1  2  3
+    // 4  5  6
+    // 7  8  9
+
+    return 0;
+}
